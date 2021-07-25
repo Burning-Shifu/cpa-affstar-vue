@@ -36,3 +36,9 @@ export default {
 
 };
 </script>
+
+<style scoped lang="scss">
+.offer-list {
+  list-style: none;
+}
+</style>

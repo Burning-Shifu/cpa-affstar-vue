@@ -52,7 +52,7 @@ export default {
       items: [
         { title: "Все офферы", icon: "mdi-gamepad-circle", to: {name: 'Home'} },
         { title: "Статистика", icon: "mdi-chart-bar", to: {name: 'Statistics'} },
-        {title: "Контакты", icon: "mdi-account-group-outline", to: {name: 'Contacts'}},
+        { title: "Контакты", icon: "mdi-account-group-outline", to: {name: 'Contacts'} },
       ],
       mini: true,
     };
