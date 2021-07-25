@@ -4,38 +4,41 @@
 
     <table class="table">
         <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>description</th>
-          <th>countriy</th>
+          <th>ID</th>
+          <th>Фото</th>
+          <th>Название</th>
+          <th>Страны</th>
+          <th>Категория</th>
+          <th>Оплата</th>
+          <th>Ср. апрув</th>
+          <th>Ср. выплата</th>
         </tr>
         <tr v-for="offer in offersList" :key="offer.id">
 
           <td v-text="offer.id">{{offersList.id}}</td>
           <td v-text="offer.name">{{offersList.name}}</td>
-          <td v-text="offer.description">{{offersList.description}}</td>
-          <td v-text="offer.countriy">{{offersList.countriy}}</td>
-
+          <td v-text="offer.country">{{offersList.country}}</td>
+<!-- "offersList.0.goals.0.country" -->
         </tr>
       </table>
   </div>
 </template>
 
 <script>
-
-
+import store from '../store'
 
 export default {
   name: 'Offers',
-  props: ['offersList'],
 
-  // created() {
-  //   console.log(this.offersList)
-  // },
+  computed: {
+    offersList() {
+      return this.$store.state.offersList
+    }
+  },
 
-  mounted() {
+  created() {
+    store.commit('getRequest')
+  },
 
-    console.log(this.offersList);
-  }
 }
 </script>
