@@ -2,7 +2,6 @@
   <div class="offers">
 
     <v-container>
-      <h1>Все офферы</h1>
 
       <ul class="offer-list">
         <li class="offer-list__item">
@@ -56,7 +55,9 @@
                 <v-col
                   v-text="offer.name"
                   cols="3"
-                  class="px-3 offer-list__tile"
+                  class="px-3 offer-list__tile link"
+                  tag="a"
+                  href="#"
                 >
                   {{offersList.name}}
                 </v-col>
@@ -112,12 +113,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.offers {
+  background-color: #f9f9fb;
+}
 .offer-list {
   list-style: none;
   padding-left: 0;
 
   &__tile {
+    color: #616161;
+
     &--id {
       max-width: 60px;
       width: 100%;

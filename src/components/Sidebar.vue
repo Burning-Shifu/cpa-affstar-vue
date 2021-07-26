@@ -2,14 +2,25 @@
   <v-card>
     <v-navigation-drawer
       v-model="drawer"
-      :mini-variant.sync="mini"
+      :expand-variant="mini"
       permanent
       app
     >
 
-      <v-divider></v-divider>
+      <v-list-item
+        class="flex-unset pa-1"
+      >
+        <v-img
+          alt="Company Logo"
+          class="mr-2 flex-unset"
+          contain
+          src="../assets/logo.png"
+          transition="scale-transition"
+          width="40"
+        />
+      </v-list-item>
 
-      <v-list dense>
+      <v-list class="sidebar-list" dense>
         <v-list-item
           v-for="item in items"
           :key="item.title"
@@ -26,7 +37,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item icon @click.stop="mini = !mini">
+        <v-list-item icon @click="resizeNavbar">
           <v-list-item-icon>
             <v-icon>mdi-chevron-left</v-icon>
           </v-list-item-icon>
@@ -41,10 +52,9 @@
 </template>
 
 <script>
+
 export default {
   name: "Sidebar",
-  props: {
-  },
 
   data() {
     return {
@@ -54,10 +64,65 @@ export default {
         { title: "Статистика", icon: "mdi-chart-bar", to: {name: 'Statistics'} },
         { title: "Контакты", icon: "mdi-account-group-outline", to: {name: 'Contacts'} },
       ],
-      mini: true,
+      mini: null,
     };
   },
+
+  methods: {
+    shrinkNavbar() {
+      const navBar = document.querySelector('nav'),
+            main = document.querySelector('main'),
+            header = document.querySelector('header');
+
+      this.mini = true;
+      navBar.style.width="56px";
+      navBar.classList.add('v-navigation-drawer--mini-variant');
+      main.style.paddingLeft="56px";
+      header.style.left="56px";
+    },
+
+    expandNavbar() {
+      // дублирую переменные, т.к. если их вывести вне экземпляра - у них значение null, пофиксить не смогла
+      const navBar = document.querySelector('nav'),
+            main = document.querySelector('main'),
+            header = document.querySelector('header');
+
+      this.mini = false;
+      navBar.style.width="256px";
+      navBar.classList.remove('v-navigation-drawer--mini-variant');
+      main.style.paddingLeft="256px";
+      header.style.left="256px";
+    },
+
+    resizeNavbar() {
+      if (!this.mini) {
+        this.shrinkNavbar();
+        localStorage.setItem('mini', true);
+      } else {
+        this.expandNavbar();
+        localStorage.setItem('mini', false);
+      }
+    },
+  },
+
+  mounted() {
+
+    if (localStorage.getItem('mini') === true) {
+      this.shrinkNavbar();
+    } else {
+      this.expandNavbar();
+    }
+  }
+
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+.sidebar-list {
+  position: absolute;
+  top: 15%;
+  width: 100%;
+}
+
+</style>
