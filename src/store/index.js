@@ -19,6 +19,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getRequest({ commit }) {
+      commit('getRequest')
+    }
   },
   modules: {
   }

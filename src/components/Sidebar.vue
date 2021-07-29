@@ -106,10 +106,10 @@ export default {
   },
 
   mounted() {
-
-    if (localStorage.getItem('mini') === true) {
+    console.log(JSON.parse(localStorage.getItem('mini')))
+    if (JSON.parse(localStorage.getItem('mini'))  === true) {
       this.shrinkNavbar();
-    } else {
+    } else if (Boolean(localStorage.getItem('mini'))  === false){
       this.expandNavbar();
     }
   }

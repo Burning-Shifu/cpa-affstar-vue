@@ -27,13 +27,6 @@ export default {
     Sidebar,
   },
 
-  data() {
-    return {
-    };
-  },
-
-  methods: {},
-
 };
 </script>
 

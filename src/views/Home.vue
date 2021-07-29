@@ -106,7 +106,7 @@ export default {
   },
 
   created() {
-    store.commit('getRequest')
+    store.dispatch('getRequest');
   },
 
 }
